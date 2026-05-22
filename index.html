@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyPaper - 学术论文格式化一站式工具</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a2e; line-height: 1.6; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #4a1a8a 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 16px; font-weight: 800; }
+        .hero p { font-size: 1.3em; opacity: 0.9; max-width: 700px; margin: 0 auto 40px; }
+        .hero-img { max-width: 900px; width: 100%; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #4a1a8a;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: transform 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); }
+
+        /* Pain Points */
+        .pain-section {
+            padding: 80px 20px;
+            background: #f8fafc;
+            text-align: center;
+        }
+        .pain-section h2 { font-size: 2.2em; margin-bottom: 40px; color: #1e3a5f; }
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .pain-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            text-align: left;
+        }
+        .pain-card .icon { font-size: 2em; margin-bottom: 12px; }
+        .pain-card h3 { font-size: 1.2em; margin-bottom: 8px; color: #e74c3c; }
+        .pain-card p { color: #555; }
+
+        /* Features */
+        .features { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+        .features h2 { font-size: 2.2em; text-align: center; margin-bottom: 60px; color: #1e3a5f; }
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+        .feature-row:nth-child(odd) { flex-direction: row-reverse; }
+        .feature-img { flex: 1; }
+        .feature-img img { width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .feature-text { flex: 1; }
+        .feature-text h3 { font-size: 1.6em; margin-bottom: 12px; color: #4a1a8a; }
+        .feature-text p { font-size: 1.1em; color: #444; margin-bottom: 16px; }
+        .feature-text ul { list-style: none; padding: 0; }
+        .feature-text ul li { padding: 6px 0; color: #555; }
+        .feature-text ul li::before { content: "✓ "; color: #27ae60; font-weight: bold; }
+
+        /* Invite Codes */
+        .invite-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .invite-section h2 { font-size: 2.2em; margin-bottom: 16px; }
+        .invite-section p { font-size: 1.1em; opacity: 0.9; margin-bottom: 40px; }
+        .invite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .invite-code {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .invite-code:hover { transform: translateY(-2px); background: rgba(255,255,255,0.25); }
+        .invite-code.used { opacity: 0.4; text-decoration: line-through; cursor: not-allowed; }
+        .invite-note { margin-top: 24px; font-size: 0.9em; opacity: 0.7; }
+
+        /* How to use */
+        .howto {
+            padding: 80px 20px;
+            background: #f8fafc;
+            text-align: center;
+        }
+        .howto h2 { font-size: 2.2em; margin-bottom: 40px; color: #1e3a5f; }
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 260px;
+        }
+        .step-num {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        .step h3 { margin-bottom: 8px; }
+        .step p { color: #555; font-size: 0.95em; }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .feature-row, .feature-row:nth-child(odd) { flex-direction: column; }
+            .pain-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>EasyPaper</h1>
+    <p>学术论文格式化一站式工具 — 保留格式翻译 + Word 一键转 LaTeX</p>
+    <img class="hero-img" src="images/hero.png" alt="EasyPaper Hero">
+    <br>
+    <a class="cta-btn" href="#invite">领取邀请码，免费试用</a>
+</section>
+
+<section class="pain-section">
+    <h2>写论文，你是否也有这些烦恼？</h2>
+    <div class="pain-grid">
+        <div class="pain-card">
+            <div class="icon">😫</div>
+            <h3>翻译后格式全乱</h3>
+            <p>用翻译软件翻译论文，表格错位、图片丢失、公式变乱码，还得花几小时重新排版。</p>
+        </div>
+        <div class="pain-card">
+            <div class="icon">⏰</div>
+            <h3>Word 转 LaTeX 耗时</h3>
+            <p>期刊要求 LaTeX 投稿，手动从 Word 转换要花 1-2 天调格式、改公式、排参考文献。</p>
+        </div>
+        <div class="pain-card">
+            <div class="icon">🤯</div>
+            <h3>LaTeX 语法门槛高</h3>
+            <p>不熟悉 LaTeX 的同学面对编译报错束手无策，一个反斜杠就能卡半天。</p>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>EasyPaper 帮你解决</h2>
+
+    <div class="feature-row">
+        <div class="feature-img">
+            <img src="images/feature_translate.png" alt="保留格式翻译">
+        </div>
+        <div class="feature-text">
+            <h3>学术翻译 — 格式完美保留</h3>
+            <p>上传 Word 文档，AI 翻译后原样保留所有格式：</p>
+            <ul>
+                <li>表格结构、合并单元格完整保留</li>
+                <li>图片位置、大小不变</li>
+                <li>标题层级、字体样式一致</li>
+                <li>数学公式、脚注、页眉页脚全部保留</li>
+                <li>支持中英、英中双向翻译</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="feature-row">
+        <div class="feature-img">
+            <img src="images/feature_latex.png" alt="Word转LaTeX">
+        </div>
+        <div class="feature-text">
+            <h3>Word 转 LaTeX — 一键生成期刊模板</h3>
+            <p>上传 .docx 文件，自动生成符合 Elsevier CAS 模板的 LaTeX 源码：</p>
+            <ul>
+                <li>自动识别章节结构、标题层级</li>
+                <li>数学公式自动转换为 LaTeX 语法</li>
+                <li>图表自动提取并正确引用</li>
+                <li>参考文献自动生成 BibTeX</li>
+                <li>作者信息、基金声明一键配置</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="howto">
+    <h2>三步搞定</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>注册登录</h3>
+            <p>使用邀请码注册账号，获得免费试用积分</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>上传文档</h3>
+            <p>上传你的 Word 文档（.docx），选择翻译或转换功能</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>下载结果</h3>
+            <p>等待几秒，下载格式完美的翻译文档或 LaTeX 源码包</p>
+        </div>
+    </div>
+</section>
+
+<section class="invite-section" id="invite">
+    <h2>限量邀请码 — 免费试用</h2>
+    <p>每个邀请码赠送 200 积分（约可翻译 4 篇论文或转换 10 次 LaTeX）</p>
+    <div class="invite-grid">
+        <div class="invite-code">EP-TRIAL-A1X7</div>
+        <div class="invite-code">EP-TRIAL-B2K9</div>
+        <div class="invite-code">EP-TRIAL-C3M4</div>
+        <div class="invite-code">EP-TRIAL-D5N8</div>
+        <div class="invite-code">EP-TRIAL-E6P2</div>
+        <div class="invite-code">EP-TRIAL-F7Q5</div>
+        <div class="invite-code">EP-TRIAL-G8R1</div>
+        <div class="invite-code">EP-TRIAL-H9S3</div>
+        <div class="invite-code">EP-TRIAL-J4T6</div>
+        <div class="invite-code">EP-TRIAL-K1W0</div>
+    </div>
+    <p class="invite-note">每个邀请码仅限一人使用，先到先得。点击复制邀请码。</p>
+</section>
+
+<section class="howto">
+    <h2>访问地址</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">🌐</div>
+            <h3>在线使用</h3>
+            <p>访问我们的网站，注册时填入邀请码即可开始使用。<br><br>
+            <strong style="font-size:1.2em;">https://easypaper.ai</strong></p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>EasyPaper &copy; 2026 | 专为研究生和科研工作者打造</p>
+</footer>
+
+<script>
+document.querySelectorAll('.invite-code').forEach(function(el) {
+    el.addEventListener('click', function() {
+        if (el.classList.contains('used')) return;
+        navigator.clipboard.writeText(el.textContent.trim());
+        var orig = el.textContent;
+        el.textContent = '已复制!';
+        setTimeout(function() { el.textContent = orig; }, 1500);
+    });
+});
+</script>
+
+</body>
+</html>
