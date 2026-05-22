@@ -2,7 +2,7 @@
 
 **学术论文格式化一站式工具** — 保留格式翻译 + Word 一键转 LaTeX
 
-![EasyPaper Hero](docs/landing/images/hero.png)
+![EasyPaper Hero](images/hero.png)
 
 ## 功能
 
@@ -10,17 +10,17 @@
 
 上传 Word 文档，AI 翻译后原样保留所有格式：表格、图片、公式、标题层级、字体样式全部不变。
 
-![翻译功能](docs/landing/images/feature_translate.png)
+![翻译功能](images/feature_translate.png)
 
 ### Word 转 LaTeX — 一键生成期刊模板
 
 上传 .docx 文件，自动生成符合 Elsevier CAS 模板的 LaTeX 源码，包括章节结构、数学公式、图表引用、参考文献 BibTeX。
 
-![LaTeX转换](docs/landing/images/feature_latex.png)
+![LaTeX转换](images/feature_latex.png)
 
 ## 免费试用
 
-我们提供 10 个限量邀请码，每个赠送 200 积分（约可翻译 4 篇论文或转换 10 次 LaTeX）：
+我们提供 10 个限量邀请码，每个赠送 100 积分（约可翻译 2 篇论文或转换 5 次 LaTeX）：
 
 | 邀请码 | 状态 |
 |--------|------|
